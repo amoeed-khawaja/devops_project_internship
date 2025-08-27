@@ -1,0 +1,15 @@
+services:
+  jenkins:
+    build: .
+    container_name: jenkins
+    ports:
+      - "8080:8080"   # Jenkins UI
+      - "50000:50000" # inbound agents (optional)
+    volumes:
+      - jenkins_home:/var/jenkins_home        # Jenkins data
+      - /var/run/docker.sock:/var/run/docker.sock # Talk to host Docker
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
+
